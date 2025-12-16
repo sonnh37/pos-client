@@ -20,6 +20,7 @@ import {
   setQuantity,
 } from "@/lib/redux/slices/cart-slice";
 import { toast } from "sonner";
+import { formatPrice } from "@/lib/utils/number-utils";
 
 interface CartProps {
   onCheckout: () => Promise<void>;
@@ -107,7 +108,7 @@ export function Cart({ onCheckout, loading }: CartProps) {
                       {item.name}
                     </h4>
                     <p className="text-sm text-gray-600">
-                      {item.price.toLocaleString()}đ × {item.quantity}
+                      {formatPrice(item.price)} × {item.quantity}
                     </p>
                   </div>
 
@@ -143,7 +144,7 @@ export function Cart({ onCheckout, loading }: CartProps) {
 
                   <div className="text-right min-w-[80px]">
                     <div className="font-semibold text-gray-800">
-                      {(item.price * item.quantity).toLocaleString()}đ
+                      {formatPrice(item.price * item.quantity)}
                     </div>
                   </div>
 
@@ -168,13 +169,13 @@ export function Cart({ onCheckout, loading }: CartProps) {
             <div className="space-y-2">
               <div className="flex justify-between text-gray-600">
                 <span>Tạm tính:</span>
-                <span>{total.toLocaleString()}đ</span>
+                <span> {formatPrice(total)}</span>
               </div>
 
-              <div className="flex justify-between text-gray-600">
+              {/* <div className="flex justify-between text-gray-600">
                 <span>Thuế (10%):</span>
-                <span>{(total * 0.1).toLocaleString()}đ</span>
-              </div>
+                <span> {formatPrice(total)}</span>
+              </div> */}
 
               <Separator />
 
@@ -184,7 +185,7 @@ export function Cart({ onCheckout, loading }: CartProps) {
                 </span>
                 <div className="text-right">
                   <div className="text-2xl font-bold text-blue-600">
-                    {total > 0 ? (total * 1.1).toLocaleString() : "0"}đ
+                    {formatPrice(total)}
                   </div>
                   <div className="text-sm text-gray-500">Đã bao gồm VAT</div>
                 </div>
@@ -207,7 +208,7 @@ export function Cart({ onCheckout, loading }: CartProps) {
                   Thanh toán
                   {total > 0 && (
                     <span className="ml-2 font-normal">
-                      {(total * 1.1).toLocaleString()}đ
+                      {formatPrice(total)}
                     </span>
                   )}
                 </>

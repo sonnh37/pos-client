@@ -17,6 +17,8 @@ import { FilterBar } from "@/components/pos/filter-bar";
 import { Pagination } from "@/components/pos/pagination";
 import { Cart } from "@/components/pos/cart";
 import { ProductsGrid } from "@/components/pos/product-grid";
+import { formatPrice } from "@/lib/utils/number-utils";
+import { Item, OrderCreateCommand } from "@/types/cqrs/commands/order-command";
 
 export default function PosScreen() {
   const dispatch = useAppDispatch();
@@ -131,18 +133,23 @@ export default function PosScreen() {
 
     setLoading(true);
     try {
-      const res = await orderService.create({
-        items: cart.map((i) => ({
-          productId: i.id,
-          quantity: i.quantity,
-        })),
-      });
+      const createCommand: OrderCreateCommand = {
+        items: cart.map(
+          (i) =>
+            ({
+              productId: i.id,
+              quantity: i.quantity,
+            } as Item)
+        ),
+      };
+      const res = await orderService.create(createCommand);
+      processResponse(res);
 
-      if (res.status === Status.OK) {
-        toast.success("Thanh toán thành công", {
-          description: `Đơn hàng đã được xử lý. Tổng tiền: ${total.toLocaleString()}đ`,
-        });
-      }
+      toast.success("Thanh toán thành công", {
+        description: `Đơn hàng đã được xử lý. Tổng tiền: ${formatPrice(
+          res.data?.totalAmount ?? 0
+        )}`,
+      });
     } catch (error) {
       toast.error("Thanh toán thất bại");
     } finally {
@@ -193,7 +200,7 @@ export default function PosScreen() {
                   <div className="hidden md:block">
                     <div className="text-sm text-gray-500">Tổng giỏ hàng</div>
                     <div className="font-bold text-gray-800">
-                      {total.toLocaleString()}đ
+                      {formatPrice(total)}
                     </div>
                   </div>
                 </div>
