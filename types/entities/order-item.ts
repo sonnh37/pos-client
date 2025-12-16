@@ -7,12 +7,7 @@ export interface OrderItem extends BaseEntity {
   productId?: string;
   quantity: number;
   unitPrice: number;
-  subtotal: number;
-  discountAmount: number;
   totalAmount: number;
-  selectedSize?: string;
-  selectedColor?: string;
-  customizationNotes?: string;
   order?: Order;
   product?: Product;
 }

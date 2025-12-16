@@ -1,17 +1,11 @@
 // store/store.ts
-import {configureStore} from '@reduxjs/toolkit';
-import widthsSlice from '@/lib/redux/slices/widthsSlice';
-import photosSlice from "@/lib/redux/slices/photosSlice";
-import chatSlice from "@/lib/redux/slices/chatSlice";
-import userSlice from "@/lib/redux/slices/userSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./slices/cart-slice";
 
 const store = configureStore({
-    reducer: {
-        widths: widthsSlice,
-        photos: photosSlice,
-        chat: chatSlice,
-        user: userSlice,
-    },
+  reducer: {
+    cart: cartReducer,
+  },
 });
 
 // Định nghĩa RootState và AppDispatch
