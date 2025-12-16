@@ -19,6 +19,7 @@ import { Cart } from "@/components/pos/cart";
 import { ProductsGrid } from "@/components/pos/product-grid";
 import { formatPrice } from "@/lib/utils/number-utils";
 import { Item, OrderCreateCommand } from "@/types/cqrs/commands/order-command";
+import { clearCart } from "@/lib/redux/slices/cart-slice";
 
 export default function PosScreen() {
   const dispatch = useAppDispatch();
@@ -150,6 +151,8 @@ export default function PosScreen() {
           res.data?.totalAmount ?? 0
         )}`,
       });
+
+      dispatch(clearCart());
     } catch (error) {
       toast.error("Thanh toán thất bại");
     } finally {
