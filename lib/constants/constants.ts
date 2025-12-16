@@ -1,6 +1,7 @@
 export class Constants {
   // information
   static readonly API_BASE = `${process.env.NEXT_PUBLIC_API_BASE}`;
+  static readonly API_SIGNALR = `${process.env.NEXT_PUBLIC_API_BASE}/orderHub`;
   static readonly PRODUCTS = "products";
   static readonly ORDERS = "orders";
   static readonly ORDER_ITEMS = "orderitems";

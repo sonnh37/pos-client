@@ -25,6 +25,7 @@ export class BaseService<TEntity> {
     const res = await axiosInstance.get<BusinessResult<QueryResult<TEntity>>>(
       `${this.endpoint}?${queryString}`
     );
+    console.log("check_res", res);
     return res.data;
   }
 
