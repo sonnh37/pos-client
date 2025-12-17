@@ -77,7 +77,7 @@ export function OrderScreen() {
           <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
             <Package className="h-6 w-6" />
             Đơn Hàng Realtime
-            <Badge
+            {/* <Badge
               variant="outline"
               className={`ml-2 ${status.bg} ${status.color} border-0`}
             >
@@ -87,7 +87,7 @@ export function OrderScreen() {
                 }`}
               />
               {status.text}
-            </Badge>
+            </Badge> */}
           </h2>
           <p className="text-gray-600 mt-1">
             {isConnected

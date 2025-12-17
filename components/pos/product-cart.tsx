@@ -185,9 +185,6 @@ export function ProductCard({ product }: ProductCardProps) {
               >
                 {formatPrice(product.price)}
               </div>
-              <div className="text-xs text-gray-500 mt-1">
-                SKU: {product.id.slice(0, 8).toUpperCase()}
-              </div>
             </div>
 
             {soldCount > 0 && (
