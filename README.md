@@ -4,3 +4,18 @@ To run this project, you will need to add the following environment variables to
 
 `NEXT_PUBLIC_API_BASE` = `https://localhost:7056`
 
+## Documentation
+
+In client we have two screen:
+
+/products: Sales Display (POS Screen)
++ Displays product list (Name, Price)
++ Adds products to shopping cart
++ Displays total amount
++ Payment button
+
+/orders: Secondary Screen (Realtime Screen)
++ Displays the list of orders in realtime
++ Automatically updates (no reload required)
++ Each order displays: Order code, Total amount, Payment time
+
