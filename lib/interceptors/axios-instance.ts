@@ -1,8 +1,5 @@
 import { BusinessResult, Status } from "@/types/models/business-result";
-import { RefreshTokenResult } from "@/types/models/token-result";
 import axios from "axios";
-import { tokenHelper } from "../utils/token-helper";
-import { userContextHelper } from "../utils/user-context-helper";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE + "/api",
@@ -31,32 +28,32 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       try {
         // Gọi API refresh token để lấy accessToken mới
-        const res: BusinessResult<RefreshTokenResult> = (
-          await axios.post(
-            `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/refresh-token`,
-            tokenHelper.get(),
-            { withCredentials: true }
-          )
-        ).data as BusinessResult<RefreshTokenResult>;
+        // const res: BusinessResult<RefreshTokenResult> = (
+        //   await axios.post(
+        //     `${process.env.NEXT_PUBLIC_API_BASE}/api/auth/refresh-token`,
+        //     tokenHelper.get(),
+        //     { withCredentials: true }
+        //   )
+        // ).data as BusinessResult<RefreshTokenResult>;
 
-        if (res.status != Status.OK) {
-          // if (window.location.pathname.startsWith("/dashboard")) {
-          //   window.location.href = "/login";
-          // }
-          tokenHelper.clear();
-          userContextHelper.clear();
-          window.location.href = "/login";
+        // if (res.status != Status.OK) {
+        //   // if (window.location.pathname.startsWith("/dashboard")) {
+        //   //   window.location.href = "/login";
+        //   // }
+        //   tokenHelper.clear();
+        //   userContextHelper.clear();
+        //   window.location.href = "/login";
 
-          return Promise.reject(error);
-        }
+        //   return Promise.reject(error);
+        // }
 
-        const newTokenResult = res.data;
-        if (!newTokenResult) {
-          return Promise.reject("No token result");
-        }
+        // const newTokenResult = res.data;
+        // if (!newTokenResult) {
+        //   return Promise.reject("No token result");
+        // }
 
-        tokenHelper.save(newTokenResult);
-        userContextHelper.save(newTokenResult.user);
+        // tokenHelper.save(newTokenResult);
+        // userContextHelper.save(newTokenResult.user);
 
         return axiosInstance(originalRequest);
       } catch (refreshError) {
