@@ -1,10 +1,4 @@
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`NEXT_PUBLIC_API_BASE` = `https://localhost:7056`
-
-## Documentation
+# Documentation
 
 In client we have two screen:
 
@@ -19,3 +13,22 @@ In client we have two screen:
 + Automatically updates (no reload required)
 + Each order displays: Order code, Total amount, Payment time
 
+# Quick Start
+
+### System Required
+- Node.js 18.x+
+
+### Clone repository
+git clone <repo-url>
+cd frontend
+
+### Install dependencies
+pnpm install
+
+### Environment Variables
+To run this project, you will need to add the following environment variables to your .env file
+
+`NEXT_PUBLIC_API_BASE` = `https://localhost:7056`
+
+### Run development server
+pnpm run dev
