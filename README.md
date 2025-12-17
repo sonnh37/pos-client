@@ -20,6 +20,7 @@ In client we have two screen:
 
 ### Clone repository
 git clone <repo-url>
+
 cd frontend
 
 ### Install dependencies
